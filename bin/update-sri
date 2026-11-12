@@ -1,0 +1,63 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+/**
+ * Jae's Dead Drop
+ *
+ * Recomputes the Subresource Integrity hashes of the bundled JS files in
+ * lib/Configuration.php. Run after any change to a file listed in `[sri]`,
+ * otherwise browsers refuse to execute it.
+ *
+ * Usage: bin/update-sri [--check]
+ *
+ * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @copyright 2026 JaeSwift (jaeswift.xyz)
+ * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
+ */
+
+$path = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+$configFile = $path . 'lib' . DIRECTORY_SEPARATOR . 'Configuration.php';
+$checkOnly = in_array('--check', $argv, true);
+
+$source = file_get_contents($configFile);
+if ($source === false) {
+    fwrite(STDERR, "Cannot read $configFile\n");
+    exit(1);
+}
+
+if (!preg_match('/\'sri\'\s*=>\s*\[(.*?)\n        \],/s', $source, $block, PREG_OFFSET_CAPTURE)) {
+    fwrite(STDERR, "Cannot locate the [sri] defaults in $configFile\n");
+    exit(1);
+}
+
+[$matched, $offset] = $block[0];
+$replacement = $matched;
+$changed = 0;
+preg_match_all('/\'(js\/[^\']+)\'\s*=>\s*\'sha512-[^\']+\'/', $matched, $entries, PREG_SET_ORDER);
+foreach ($entries as $entry) {
+    $file = $entry[1];
+    $filePath = $path . $file;
+    if (!is_file($filePath)) {
+        fwrite(STDERR, "Missing file: $file\n");
+        exit(1);
+    }
+    $hash = 'sha512-' . base64_encode(hash_file('sha512', $filePath, true));
+    $new = str_pad("'$file'", 24) . " => '$hash',";
+    $pattern = '/' . preg_quote($entry[0], '/') . ',*/';
+    $replacement = preg_replace($pattern, $new, $replacement, 1);
+    if ($entry[0] !== $new) {
+        ++$changed;
+        echo ($checkOnly ? "stale:  " : "updated: ") . $file . PHP_EOL;
+    }
+}
+
+if ($changed === 0) {
+    echo "All SRI hashes are up to date." . PHP_EOL;
+    exit(0);
+}
+if ($checkOnly) {
+    exit(1);
+}
+
+$source = substr_replace($source, $replacement, $offset, strlen($matched));
+file_put_contents($configFile, $source);
+echo "Wrote $changed hash(es) to $configFile" . PHP_EOL;

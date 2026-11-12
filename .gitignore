@@ -1,0 +1,48 @@
+# Ignore server files for safety
+.htaccess
+.htpasswd
+cfg/*
+!cfg/conf.sample.php
+!cfg/.htaccess
+
+# Ignore data/
+/data/
+
+# Ignore PhpDoc
+doc/*
+!doc/*.md
+
+# Ignore vendor dir of Composer except PHP files
+vendor/*.*
+vendor/*/*.*
+vendor/*/*/*.*
+vendor/*/*/*/*.*
+vendor/*/*/*/*/*.*
+vendor/*/*/*/*/*/*.*
+vendor/**/LICENSE
+vendor/**/test
+vendor/**/tst
+vendor/**/tests
+vendor/**/build_phar.php
+!vendor/**/*.php
+vendor/bin/**
+
+# Ignore local node modules, unit testing logs, api docs and IDE project files
+js/node_modules/
+js/mocha-results.xml
+js/test.log
+tst/log/
+tst/ConfigurationCombinationsTest.php
+tst/.phpunit.result.cache
+.settings
+.buildpath
+.project
+.phpdoc
+.externalToolBuilders
+.c9
+/.idea/
+*.iml
+
+# optional S3/GCS SDKs installed for the test suite
+vendor/google/
+vendor/aws/
