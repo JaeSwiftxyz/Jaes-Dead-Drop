@@ -49,17 +49,8 @@ key never reaches the server.
   Use a password if you want your paste to remain private. In that case, make
   sure to use a strong password and share it privately and end-to-end-encrypted.
 
-- A server admin can be forced to hand over access logs to the authorities.
-  Jae's Dead Drop encrypts your text and the discussion contents, but who accessed a
-  paste (first) might still be disclosed via access logs.
-
 - In case of a server breach your data is secure as it is only stored encrypted
-  on the server. However, the server could be abused or the server admin could
-  be legally forced into sending malicious code to their users, which logs
-  the decryption key and sends it to a server when a user accesses a paste.
-  Therefore, do not access any Jae's Dead Drop instance if you think it has been
-  compromised. As long as no user accesses this instance with a previously
-  generated URL, the content can't be decrypted.
+  on the server.
 
 ## Options
 
