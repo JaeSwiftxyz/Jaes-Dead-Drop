@@ -533,6 +533,15 @@ endif;
                     ?>
 				</p>
 			</div>
+			<nav class="footer-docs" aria-label="<?php echo I18n::_('Documentation'); ?>">
+				<span class="footer-docs-label"><?php echo I18n::_('Docs'); ?></span>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md"><?php echo I18n::_('FAQ'); ?></a>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#installation"><?php echo I18n::_('Installation'); ?></a>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php"><?php echo I18n::_('Configuration'); ?></a>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#templates"><?php echo I18n::_('Templates'); ?></a>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#translations"><?php echo I18n::_('Translation'); ?></a>
+				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Running%20Unit%20Tests.md"><?php echo I18n::_('Unit tests'); ?></a>
+			</nav>
 		</footer>
 		<div id="serverdata" class="hidden" aria-hidden="true">
 			<div id="templates">

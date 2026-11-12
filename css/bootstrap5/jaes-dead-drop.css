@@ -775,3 +775,45 @@ footer > .row > p:first-of-type {
 		transition: none;
 	}
 }
+
+/* footer docs --------------------------------------------------------- */
+
+.footer-docs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.3rem 1.1rem;
+	margin-top: 1.5rem;
+	padding-top: 0.9rem;
+	border-top: 1px solid var(--jdd-line);
+	font-family: var(--jdd-pixel);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.footer-docs-label {
+	color: var(--jdd-accent);
+	margin-right: 0.3rem;
+}
+
+.footer-docs a {
+	color: var(--jdd-muted);
+	text-decoration: none;
+}
+
+.footer-docs a:hover,
+.footer-docs a:focus-visible {
+	color: var(--jdd-accent);
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+[data-bs-theme=light] .footer-docs-label {
+	color: #3f5a00;
+}
+
+[data-bs-theme=light] .footer-docs a:hover,
+[data-bs-theme=light] .footer-docs a:focus-visible {
+	color: #2f4205;
+}
