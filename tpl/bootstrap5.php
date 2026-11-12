@@ -53,6 +53,7 @@ endif;
 		<?php $this->_scriptTag('js/purify-3.4.17.js', 'defer'); ?>
 		<?php $this->_scriptTag('js/legacy.js', 'defer'); ?>
 		<?php $this->_scriptTag('js/jaes-dead-drop.js', 'defer'); ?>
+		<?php $this->_scriptTag('js/docs.js', 'defer'); ?>
 		<!-- icon -->
 		<link rel="apple-touch-icon" href="<?php echo I18n::encode($BASEPATH); ?>img/apple-touch-icon.png" sizes="180x180" />
 		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
@@ -533,14 +534,23 @@ endif;
                     ?>
 				</p>
 			</div>
-			<nav class="footer-docs" aria-label="<?php echo I18n::_('Documentation'); ?>">
-				<span class="footer-docs-label"><?php echo I18n::_('Docs'); ?></span>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md"><?php echo I18n::_('FAQ'); ?></a>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#installation"><?php echo I18n::_('Installation'); ?></a>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php"><?php echo I18n::_('Configuration'); ?></a>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#templates"><?php echo I18n::_('Templates'); ?></a>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#translations"><?php echo I18n::_('Translation'); ?></a>
-				<a href="https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Running%20Unit%20Tests.md"><?php echo I18n::_('Unit tests'); ?></a>
+			<section id="docpanel" class="docpanel" hidden tabindex="-1" role="region" aria-labelledby="docpanel-title">
+				<div class="docpanel-head">
+					<h3 id="docpanel-title" data-error="<?php echo I18n::_('Could not load the document.'); ?>"></h3>
+					<button id="docpanel-close" type="button" class="docpanel-close" aria-label="<?php echo I18n::_('Close'); ?>">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div id="docpanel-body" class="docpanel-body"></div>
+			</section>
+			<nav class="footer-docs" role="tablist" aria-label="<?php echo I18n::_('Documentation'); ?>">
+				<span class="footer-docs-label" aria-hidden="true"><?php echo I18n::_('Docs'); ?></span>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="faq"><?php echo I18n::_('FAQ'); ?></button>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="installation"><?php echo I18n::_('Installation'); ?></button>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="configuration"><?php echo I18n::_('Configuration'); ?></button>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="templates"><?php echo I18n::_('Templates'); ?></button>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="translation"><?php echo I18n::_('Translation'); ?></button>
+				<button type="button" role="tab" aria-selected="false" data-loading="<?php echo I18n::_('Loading…'); ?>" data-doc="tests"><?php echo I18n::_('Unit tests'); ?></button>
 			</nav>
 		</footer>
 		<div id="serverdata" class="hidden" aria-hidden="true">
