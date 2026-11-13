@@ -5,10 +5,22 @@ use JaesDeadDrop\I18n;
 	<head>
 <?php
 // canonical is the tool path without the note id, the card is identical for every note;
-// prefer the configured base path so www and apex shares canonicalise to one URL
-$canonical = isset($BASEPATH) && $BASEPATH !== ''
-    ? $BASEPATH
-    : (isset($HTTPSLINK) && $HTTPSLINK !== '' ? $HTTPSLINK : '/');
+// it has to be absolute, the configured base path may be a bare path
+$basePath = isset($BASEPATH) ? $BASEPATH : '';
+if (str_starts_with($basePath, 'http')) {
+    $canonical = $basePath;
+} elseif (isset($HTTPSLINK) && $HTTPSLINK !== '') {
+    $scheme = parse_url($HTTPSLINK, PHP_URL_SCHEME);
+    $host = parse_url($HTTPSLINK, PHP_URL_HOST);
+    $canonical = (is_string($scheme) && $scheme !== '' && is_string($host) && $host !== '' && $basePath !== '')
+        ? $scheme . '://' . $host . '/' . ltrim($basePath, '/')
+        : $HTTPSLINK;
+} else {
+    $canonical = $basePath !== '' ? $basePath : '/';
+}
+if (!str_ends_with($canonical, '/')) {
+    $canonical .= '/';
+}
 $shareImage = isset($OGIMAGE) && $OGIMAGE !== ''
     ? $OGIMAGE
     : rtrim($canonical, '/') . '/img/apple-touch-icon.png';

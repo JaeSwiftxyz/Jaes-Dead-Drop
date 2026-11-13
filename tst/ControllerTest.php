@@ -106,6 +106,7 @@ class ControllerTest extends TestCase
     {
         $options = parse_ini_file(CONF, true);
         $options['main']['ogimage'] = 'https://cdn.example.com/card.png';
+        $options['main']['basepath'] = '/tools/dead-drop/';
         Helper::createIniFile(CONF, $options);
         $_SERVER['HTTP_HOST'] = 'example.com';
         ob_start();
@@ -118,6 +119,11 @@ class ControllerTest extends TestCase
             'outputs the configured sharing card'
         );
         $this->assertStringContainsString(
+            '<link rel="canonical" href="https://example.com/tools/dead-drop/" />',
+            $content,
+            'absolutises a path only base path for the canonical URL'
+        );
+        $this->assertStringContainsString(
             'img-src &apos;self&apos; https://cdn.example.com data:',
             $content,
             'allows the sharing card origin in the image policy'
@@ -126,6 +132,26 @@ class ControllerTest extends TestCase
             'content="180"',
             $content,
             'announces the large card dimensions'
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testViewAbsoluteBasePath()
+    {
+        $options = parse_ini_file(CONF, true);
+        $options['main']['basepath'] = 'https://dead-drop.example.com/';
+        Helper::createIniFile(CONF, $options);
+        $_SERVER['HTTP_HOST'] = 'example.com';
+        ob_start();
+        new Controller;
+        $content = ob_get_contents();
+        ob_end_clean();
+        $this->assertStringContainsString(
+            '<link rel="canonical" href="https://dead-drop.example.com/" />',
+            $content,
+            'keeps a configured absolute base path'
         );
     }
 
