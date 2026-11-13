@@ -27,6 +27,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   release:
+    needs:
+      - draft
     permissions:
       contents: write
     outputs:
