@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.repository == 'JaeSwiftxyz/Jaes-Dead-Drop' && (
+      github.event_name == 'push' ||
       github.event.pull_request.author_association == 'COLLABORATOR' ||
       github.event.pull_request.author_association == 'CONTRIBUTOR' ||
       github.event.pull_request.author_association == 'MEMBER' ||
