@@ -39,9 +39,13 @@ step is what binds that file to this repository and workflow. Use the
 Tags are signed with an **SSH key** (Ed25519), so verifiers need the signer in an
 allowed-signers file before `git tag --verify` will accept it:
 
+The signing key is published in [release-signing-key.md](release-signing-key.md)
+so verification needs nothing from GitHub:
+
 ```bash
 mkdir -p ~/.config/git
-curl -s https://github.com/JaeSwiftxyz.keys | sed 's|^|jae@jaeswift.xyz |' >> ~/.config/git/allowed_signers
+grep -A2 '^```$' https://raw.githubusercontent.com/JaeSwiftxyz/jaes-dead-drop/main/doc/release-signing-key.md \
+  | grep '^ssh-' | sed 's|^|jae@jaeswift.xyz |' >> ~/.config/git/allowed_signers
 git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
 ```
 

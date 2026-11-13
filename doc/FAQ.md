@@ -27,9 +27,9 @@ generated server-side and are not what the published hash describes. The
 release assets are built from the tag by `bin/make-release`.
 
 Better still, clone the repository and check out the signed tag, so you can read
-the code you run. Tags are SSH-signed; to check one, add the maintainer key from
-<https://github.com/JaeSwiftxyz.keys> to an allowed-signers file and point
-`gpg.ssh.allowedSignersFile` at it.
+the code you run. Tags are SSH-signed; add the key in
+[release-signing-key.md](release-signing-key.md) to an allowed-signers file and
+point `gpg.ssh.allowedSignersFile` at it, then `git tag --verify <version>`.
 
 ## Why does it claim my browser is too old? {#modern-browser}
 
