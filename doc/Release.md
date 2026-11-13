@@ -1,44 +1,51 @@
 # Release
 
-## Overview of Supply-Chain Security
+## What a release contains
 
-As of the Jae's Dead Drop 1.0 release we [cryptographically sign](https://git-scm.com/book/uz/v2/Git-Tools-Signing-Your-Work) our git commits and tags, so that you can verify we actually developed the software. Later, we also [started signing the release archives on GitHub](https://github.com/JaeSwiftxyz/jaes-dead-drop/issues/219) and retroactively signed all releases from 1.0 forward.
+Every tag produces a draft release with:
 
-Since [release 1.6.2](https://github.com/JaeSwiftxyz/jaes-dead-drop/releases/tag/1.6.2) our release assets additionally also are [verified with the SLSA (Supply-chain Levels for Software Artifacts) framework](https://slsa.dev/), providing an in-toto manifest of the release archive.
+| asset | purpose |
+| --- | --- |
+| `jaes-dead-drop-<version>.tar.gz` | source archive |
+| `jaes-dead-drop-<version>.zip` | same tree, zip |
+| `sha256sums.txt` | SHA-256 of both archives |
+| `multiple.intoto.jsonl` | SLSA provenance for the assets above |
 
-This achieves the following:
-1. It ensures no maintainer has gone rogue and has modified/tampered with the source code before “building” the release.
-2. It ensures the release is build exactly according to the source as defined by the branch that was used for the release.
-   This includes the workflow file defining how the release is done itself.
-3. Our release should achieve [SLSA build level 3](https://slsa.dev/spec/v1.0/levels#build-l3) as it [runs on GitHub](https://slsa.dev/spec/v1.0/threats). Some more properties [are thus achieved](https://slsa.dev/spec/v1.0/threats). 
+The archives are built by `bin/make-release` from the tag with `git archive`
+and `gzip -9n`: entries carry the commit's mtimes and the gzip header holds no
+timestamp, so the same tag always produces the same bytes on any machine.
+GitHub's own "Source code (…)" links are *not* used, because those archives are
+regenerated server-side and their hashes have changed before.
 
-For more information [see the corresponding issue](https://github.com/JaeSwiftxyz/jaes-dead-drop/issues/1169) and [the GitHub workflow file](/.github/workflows/release.yml).
+The SLSA provenance is produced by
+[`.github/workflows/release.yml`](../.github/workflows/release.yml) on GitHub's
+own runners and covers the exact assets uploaded, so neither a rogue maintainer
+nor a modified workflow can swap them afterwards.
 
-## Reproducible builds
+## Verify a download
 
-All releases `.tar.gz` and `.zip` archives since 1.0 come with corresponding `.asc` signatures that can be used to confirm the authenticity of the fact that the release has been issued by a Jae's Dead Drop maintainer.
-
-This uses traditional [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) signatures.
-
-## Verification
-
-You can use the gpg signatures for verifying the reproducibility and that a maintainer in posession with that PGP private key created the release with that content:
-
-```
-$ gpg2 --verify 1.6.2.tar.gz.asc
-gpg: assuming signed data in '1.6.2.tar.gz'
-gpg: Signature made Fri Dec 15 06:21:08 2023 UTC
-gpg:                using RSA key 28CA7C964938EA5C1481D42AE11B7950E9E183DB
-gpg: Good signature from "Jae's Dead Drop release (solely used for signing releases)" [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 28CA 7C96 4938 EA5C 1481  D42A E11B 7950 E9E1 83DB
+```bash
+sha256sum --check --ignore-missing sha256sums.txt
+gh attestation verify jaes-dead-drop-<version>.tar.gz --repo JaeSwiftxyz/jaes-dead-drop
 ```
 
-For a more step-by-step guide in detail [see this FAQ](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#download).
+`gh attestation verify` checks the SLSA provenance against the repository and
+the workflow that built the asset. The equivalent with the standalone tool is
+the [SLSA verifier](https://github.com/slsa-framework/slsa-verifier#verification-for-github-builders).
 
-SLSA verification can be performed using the [SLSA verifier](https://github.com/slsa-framework/slsa-verifier?tab=readme-ov-file#verification-for-github-builders).
+Tags may additionally be signed; `git tag --verify <tag>` tells you.
 
-## Release process
+## Checklist
 
-The release process is outlined in the [release checklist](https://github.com/JaeSwiftxyz/jaes-dead-drop/wiki/Release-Checklist). The key manual steps are performed using a [Makefile](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/master/Makefile#L31-L43) and using a [shell script](https://github.com/rugk/gittools/blob/master/signrelease.sh).
+1. Bump the version in `lib/Controller.php`, `Makefile`, `js/package.json`,
+   `README.md`, `SECURITY.md` and add a `CHANGELOG.md` entry.
+2. `php bin/update-sri`, run both test suites.
+3. `git tag -s <version>` (annotated, signed) and push the tag.
+4. Wait for the workflow. It builds the archives, uploads them with
+   `sha256sums.txt`, then attaches provenance from the SLSA generator.
+5. Check `sha256sums.txt` in the draft against a local `bin/make-release`
+   run — they must match.
+6. Publish the draft.
+
+If CI is unavailable, steps 4 can be done by hand: `bin/make-release <version>`,
+upload `dist/*` to the release, and skip the provenance (say so in the notes).

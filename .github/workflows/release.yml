@@ -2,7 +2,7 @@ name: Draft Release
 
 on:
   push:
-    tags: '[0-9]+.[0-9]?[0-9]?[0-9]?.?[0-9]+'
+    tags: '[0-9]+.[0-9]+.[0-9]+'
 
 permissions: {}
 
@@ -27,19 +27,39 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   release:
+    permissions:
+      contents: write
     outputs:
       hashes: ${{ steps.hash.outputs.hashes }}
     runs-on: ubuntu-latest
     steps:
-      - name: Collect artifacts
-        run: |
-          wget -q "https://github.com/JaeSwiftxyz/jaes-dead-drop/archive/refs/tags/${GITHUB_REF_NAME}.tar.gz"
-          wget -q "https://github.com/JaeSwiftxyz/jaes-dead-drop/archive/refs/tags/${GITHUB_REF_NAME}.zip"
+      - name: Checkout the tag
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Generate hashes
+      # Archives come from git itself (commit mtimes, fixed prefix) so the bytes
+      # are reproducible from the tag instead of depending on GitHub's generated
+      # source archives, whose hashes have changed in the past.
+      - name: Build reproducible archives
+        run: |
+          set -eu
+          V="${GITHUB_REF_NAME}"
+          bin/make-release "$V" dist
+
+      - name: Publish archives and checksums to the draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${GITHUB_REF_NAME}" dist/* --clobber
+
+      - name: Generate hashes of the uploaded assets
         shell: bash
         id: hash
-        run: echo "hashes=$(sha256sum ${GITHUB_REF_NAME}.* | base64 -w0)" >> "$GITHUB_OUTPUT"
+        run: echo "hashes=$(sha256sum dist/* | sed 's#dist/##' | base64 -w0)" >> "$GITHUB_OUTPUT"
+
+      - name: Show checksums
+        run: cat dist/sha256sums.txt
 
   provenance:
     needs:

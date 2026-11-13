@@ -46,3 +46,6 @@ tst/.phpunit.result.cache
 # optional S3/GCS SDKs installed for the test suite
 vendor/google/
 vendor/aws/
+
+# release artifacts
+dist/

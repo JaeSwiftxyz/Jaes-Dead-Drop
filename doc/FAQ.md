@@ -12,9 +12,21 @@
 
 ## How do I download this securely? {#download}
 
-Download the release archive from the repository's releases page and verify it
-against the published hash. Better still, clone the repository and check out a
-signed tag, then compare the files you run against the tag.
+Every release publishes `sha256sums.txt` next to the archives, plus a SLSA
+provenance file. Download the archive **and** the sums from the same release,
+then:
+
+```bash
+sha256sum --check --ignore-missing sha256sums.txt
+gh attestation verify jaes-dead-drop-<version>.tar.gz --repo JaeSwiftxyz/jaes-dead-drop
+```
+
+Do not use GitHub's "Source code (…)" links for this: those archives are
+generated server-side and are not what the published hash describes. The
+release assets are built from the tag by `bin/make-release`.
+
+Better still, clone the repository and check out the signed tag, so you can read
+the code you run.
 
 ## Why does it claim my browser is too old? {#modern-browser}
 

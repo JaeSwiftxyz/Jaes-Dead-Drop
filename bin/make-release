@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Build the release archives and their checksums for a tag.
+#
+# Deterministic: the tarball comes from `git archive` (commit mtimes, sorted
+# entries) and gzip runs with -n, so the same tag always hashes the same.
+#
+# Usage: bin/make-release 1.0.0 [outdir]
+set -euo pipefail
+
+VERSION="${1:?usage: bin/make-release <version> [outdir]}"
+OUT="${2:-dist}"
+TAG="$VERSION"
+PREFIX="jaes-dead-drop-$VERSION/"
+
+cd "$(dirname "$0")/.."
+
+git rev-parse --verify --quiet "refs/tags/$TAG" >/dev/null ||
+    { echo "no such tag: $TAG" >&2; exit 1; }
+
+mkdir -p "$OUT"
+TARBALL="$OUT/jaes-dead-drop-$VERSION.tar.gz"
+ZIPBALL="$OUT/jaes-dead-drop-$VERSION.zip"
+
+git archive --format=tar --prefix="$PREFIX" "$TAG" | gzip -9n > "$TARBALL"
+git archive --format=zip -9 --prefix="$PREFIX" "$TAG" > "$ZIPBALL"
+
+(
+    cd "$OUT"
+    sha256sum "jaes-dead-drop-$VERSION.tar.gz" "jaes-dead-drop-$VERSION.zip" > sha256sums.txt
+    cat sha256sums.txt
+)
+
+echo "archives and sha256sums.txt written to $OUT/"
