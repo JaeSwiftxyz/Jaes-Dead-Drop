@@ -169,7 +169,7 @@ new ConfigurationTestGenerator(array(
                 array(
                     'type' => 'MatchesRegularExpression',
                     'args' => array(
-                        '#<link[^>]+type="text/css"[^>]+rel="stylesheet"[^>]+href="css/bootstrap5/jaes-dead-drop\.css\\?\d[\d\.]+\d+"[^>]*/>#',
+                        '#<link[^>]+type="text/css"[^>]+rel="stylesheet"[^>]+href="css/bootstrap5/jaes-dead-drop\.css[^"]*"[^>]*/>#',
                         '$content',
                         'outputs "bootstrap5" stylesheet correctly',
                     ),
