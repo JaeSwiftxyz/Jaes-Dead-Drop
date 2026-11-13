@@ -3,7 +3,16 @@ use JaesDeadDrop\I18n;
 ?><!DOCTYPE html>
 <html lang="<?php echo I18n::getLanguage(); ?>"<?php echo I18n::isRtl() ? ' dir="rtl"' : ''; ?> class="h-100" data-bs-theme="dark">
 	<head>
-<?php $shareImage = isset($OGIMAGE) && $OGIMAGE !== '' ? $OGIMAGE : (isset($BASEPATH) ? $BASEPATH : '') . 'img/apple-touch-icon.png'; ?>
+<?php
+// canonical is the tool path without the note id, the card is identical for every note;
+// prefer the configured base path so www and apex shares canonicalise to one URL
+$canonical = isset($BASEPATH) && $BASEPATH !== ''
+    ? $BASEPATH
+    : (isset($HTTPSLINK) && $HTTPSLINK !== '' ? $HTTPSLINK : '/');
+$shareImage = isset($OGIMAGE) && $OGIMAGE !== ''
+    ? $OGIMAGE
+    : rtrim($canonical, '/') . '/img/apple-touch-icon.png';
+?>
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-Security-Policy" content="<?php echo I18n::encode($CSPHEADER); ?>">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +20,7 @@ use JaesDeadDrop\I18n;
 		<meta name="robots" content="noindex" />
 		<meta name="google" content="notranslate">
 		<title><?php echo I18n::_($NAME); ?></title>
+		<link rel="canonical" href="<?php echo I18n::encode($canonical); ?>" />
 		<link type="text/css" rel="stylesheet" href="css/bootstrap5/bootstrap<?php echo I18n::isRtl() ? '.rtl' : ''; ?>-5.3.8.css" />
 		<link type="text/css" rel="stylesheet" href="css/bootstrap5/jaes-dead-drop.css<?php echo $this->cacheBuster('css/bootstrap5/jaes-dead-drop.css'); ?>" />
 <?php
@@ -64,10 +74,12 @@ endif;
 		<meta name="msapplication-config" content="browserconfig.xml">
 		<meta name="theme-color" content="#0b0c0a" />
 		<!-- Twitter/social media cards -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="<?php echo I18n::_('Encrypted note on %s', I18n::_($NAME)) ?>" />
 		<meta name="twitter:description" content="<?php echo I18n::_('Visit this link to see the note. Giving the URL to anyone allows them to access the note, too.') ?>" />
 		<meta name="twitter:image" content="<?php echo I18n::encode($shareImage); ?>" />
+		<meta property="og:url" content="<?php echo I18n::encode($canonical); ?>" />
+		<meta property="og:type" content="website" />
 		<meta property="og:title" content="<?php echo I18n::_($NAME); ?>" />
 		<meta property="og:site_name" content="<?php echo I18n::_($NAME); ?>" />
 		<meta property="og:description" content="<?php echo I18n::_('Visit this link to see the note. Giving the URL to anyone allows them to access the note, too.') ?>" />

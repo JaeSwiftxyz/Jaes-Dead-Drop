@@ -72,6 +72,61 @@ class ControllerTest extends TestCase
             $content,
             'outputs configured https URL correctly'
         );
+        $this->assertStringContainsString(
+            '<link rel="canonical" href="https://' . $_SERVER['HTTP_HOST'] . '/" />',
+            $content,
+            'outputs canonical URL'
+        );
+        $this->assertStringContainsString(
+            '<meta name="twitter:card" content="summary_large_image" />',
+            $content,
+            'requests a large social card'
+        );
+        $this->assertStringContainsString(
+            '<meta property="og:url" content="https://' . $_SERVER['HTTP_HOST'] . '/" />',
+            $content,
+            'outputs opengraph URL'
+        );
+        $this->assertStringContainsString(
+            '<meta property="og:type" content="website" />',
+            $content,
+            'outputs opengraph type'
+        );
+        $this->assertStringContainsString(
+            '<meta property="og:image" content="https://' . $_SERVER['HTTP_HOST'] . '/img/apple-touch-icon.png" />',
+            $content,
+            'falls back to an absolute icon URL for the sharing card'
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testViewSharingCardOnOtherHost()
+    {
+        $options = parse_ini_file(CONF, true);
+        $options['main']['ogimage'] = 'https://cdn.example.com/card.png';
+        Helper::createIniFile(CONF, $options);
+        $_SERVER['HTTP_HOST'] = 'example.com';
+        ob_start();
+        new Controller;
+        $content = ob_get_contents();
+        ob_end_clean();
+        $this->assertStringContainsString(
+            '<meta property="og:image" content="https://cdn.example.com/card.png" />',
+            $content,
+            'outputs the configured sharing card'
+        );
+        $this->assertStringContainsString(
+            'img-src &apos;self&apos; https://cdn.example.com data:',
+            $content,
+            'allows the sharing card origin in the image policy'
+        );
+        $this->assertStringNotContainsString(
+            'content="180"',
+            $content,
+            'announces the large card dimensions'
+        );
     }
 
     /**

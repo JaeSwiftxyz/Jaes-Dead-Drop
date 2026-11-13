@@ -12,6 +12,10 @@
 ; allow Opengraph images to be displayed on social networks.
 ; basepath = "https://jaes-dead-drop.example.com/"
 
+; (optional) absolute or site relative URL of a 1200x630 image used as the
+; social sharing card. Falls back to the apple touch icon when left empty.
+; ogimage = "https://jaes-dead-drop.example.com/img/sharing-card.png"
+
 ; enable or disable the discussion feature, defaults to true
 discussion = true
 

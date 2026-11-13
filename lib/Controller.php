@@ -402,7 +402,26 @@ class Controller
      */
     private function _view()
     {
-        header('Content-Security-Policy: ' . $this->_conf->getKey('cspheader'));
+        $cspheader = (string) $this->_conf->getKey('cspheader');
+        // the sharing card can live on another host than the page (e.g. apex vs
+        // www), so let that origin through for images or strict clients drop it
+        $ogImage = (string) $this->_conf->getKey('ogimage');
+        if ($ogImage !== '') {
+            $origin = parse_url($ogImage, PHP_URL_SCHEME);
+            $host = parse_url($ogImage, PHP_URL_HOST);
+            if (
+                is_string($origin) && $origin !== '' &&
+                is_string($host) && $host !== '' &&
+                str_contains($cspheader, 'img-src \'self\'')
+            ) {
+                $cspheader = str_replace(
+                    'img-src \'self\'',
+                    'img-src \'self\' ' . $origin . '://' . $host,
+                    $cspheader
+                );
+            }
+        }
+        header('Content-Security-Policy: ' . $cspheader);
         header('Cross-Origin-Resource-Policy: same-origin');
         header('Cross-Origin-Embedder-Policy: require-corp');
         // disabled, because it prevents links from a document to the same site to
@@ -444,7 +463,7 @@ class Controller
                 '; sandbox allow-same-origin allow-scripts allow-forms allow-modals allow-downloads',
             ],
             '',
-            $this->_conf->getKey('cspheader')
+            $cspheader
         );
 
         $page = new View;
