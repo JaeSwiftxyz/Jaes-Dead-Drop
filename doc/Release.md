@@ -26,7 +26,7 @@ nor a modified workflow can swap them afterwards.
 
 ```bash
 sha256sum --check --ignore-missing sha256sums.txt
-slsa-verifier verify-artifact --provenance jaes-dead-drop-<version>.intoto.jsonl \
+slsa-verifier verify-artifact --provenance-path jaes-dead-drop-<version>.intoto.jsonl \
   --source-uri github.com/JaeSwiftxyz/jaes-dead-drop jaes-dead-drop-<version>.tar.gz
 ```
 
