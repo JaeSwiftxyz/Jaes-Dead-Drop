@@ -12,18 +12,25 @@ on:
 permissions: {}
 
 jobs:
+  # secrets are not available in a job-level `if`, so probe for the token first
+  token:
+    runs-on: ubuntu-latest
+    outputs:
+      present: ${{ steps.probe.outputs.present }}
+    steps:
+      - id: probe
+        env:
+          SNYK: ${{ secrets.SNYK_TOKEN }}
+        run: echo "present=$([ -n "$SNYK" ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"
+
   # https://github.com/snyk/actions/tree/master/php
   snyk-php:
+    needs:
+      - token
+    if: needs.token.outputs.present == 'yes'
     permissions:
       security-events: write
     runs-on: ubuntu-latest
-    if: |
-      github.repository == 'JaeSwiftxyz/Jaes-Dead-Drop' && (
-      github.event_name == 'push' ||
-      github.event.pull_request.author_association == 'COLLABORATOR' ||
-      github.event.pull_request.author_association == 'CONTRIBUTOR' ||
-      github.event.pull_request.author_association == 'MEMBER' ||
-      github.event.pull_request.author_association == 'OWNER' )
     steps:
       - uses: actions/checkout@v7
         with:
