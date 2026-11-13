@@ -18,7 +18,8 @@ then:
 
 ```bash
 sha256sum --check --ignore-missing sha256sums.txt
-gh attestation verify jaes-dead-drop-<version>.tar.gz --repo JaeSwiftxyz/jaes-dead-drop
+slsa-verifier verify-artifact --provenance jaes-dead-drop-<version>.intoto.jsonl \
+  --source-uri github.com/JaeSwiftxyz/jaes-dead-drop jaes-dead-drop-<version>.tar.gz
 ```
 
 Do not use GitHub's "Source code (…)" links for this: those archives are

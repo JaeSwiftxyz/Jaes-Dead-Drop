@@ -26,12 +26,15 @@ nor a modified workflow can swap them afterwards.
 
 ```bash
 sha256sum --check --ignore-missing sha256sums.txt
-gh attestation verify jaes-dead-drop-<version>.tar.gz --repo JaeSwiftxyz/jaes-dead-drop
+slsa-verifier verify-artifact --provenance jaes-dead-drop-<version>.intoto.jsonl \
+  --source-uri github.com/JaeSwiftxyz/jaes-dead-drop jaes-dead-drop-<version>.tar.gz
 ```
 
-`gh attestation verify` checks the SLSA provenance against the repository and
-the workflow that built the asset. The equivalent with the standalone tool is
-the [SLSA verifier](https://github.com/slsa-framework/slsa-verifier#verification-for-github-builders).
+The second command checks the provenance against the repository and the workflow
+that built the asset, which is what makes the checksum unforgeable. Use the
+[SLSA verifier](https://github.com/slsa-framework/slsa-verifier#verification-for-github-builders)
+(`gh attestation verify` does not read this bundle, it only sees attestations
+created with `actions/attest`).
 
 Tags may additionally be signed; `git tag --verify <tag>` tells you.
 

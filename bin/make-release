@@ -1,33 +1,113 @@
-#!/usr/bin/env bash
-# Build the release archives and their checksums for a tag.
-#
-# Deterministic: the tarball comes from `git archive` (commit mtimes, sorted
-# entries) and gzip runs with -n, so the same tag always hashes the same.
-#
-# Usage: bin/make-release 1.0.0 [outdir]
-set -euo pipefail
+#!/usr/bin/env python3
+"""Build the release archives and their checksums for a tag.
 
-VERSION="${1:?usage: bin/make-release <version> [outdir]}"
-OUT="${2:-dist}"
-TAG="$VERSION"
-PREFIX="jaes-dead-drop-$VERSION/"
+Reproducible on any machine: the tree is exported with `git archive`, then
+re-archived with sorted entries, a fixed mtime, zeroed ownership and no
+timestamp in the gzip header or the zip records. The same tag always hashes
+the same.
 
-cd "$(dirname "$0")/.."
+Usage: bin/make-release 1.0.0 [outdir]
+"""
 
-git rev-parse --verify --quiet "refs/tags/$TAG" >/dev/null ||
-    { echo "no such tag: $TAG" >&2; exit 1; }
+import gzip
+import io
+import os
+import shutil
+import subprocess
+import sys
+import tarfile
+import tempfile
+import time
+import zipfile
 
-mkdir -p "$OUT"
-TARBALL="$OUT/jaes-dead-drop-$VERSION.tar.gz"
-ZIPBALL="$OUT/jaes-dead-drop-$VERSION.zip"
+FIXED_TIME = 0
 
-git archive --format=tar --prefix="$PREFIX" "$TAG" | gzip -9n > "$TARBALL"
-git archive --format=zip -9 --prefix="$PREFIX" "$TAG" > "$ZIPBALL"
 
-(
-    cd "$OUT"
-    sha256sum "jaes-dead-drop-$VERSION.tar.gz" "jaes-dead-drop-$VERSION.zip" > sha256sums.txt
-    cat sha256sums.txt
-)
+def main() -> int:
+    if len(sys.argv) < 2:
+        print("usage: bin/make-release <version> [outdir]", file=sys.stderr)
+        return 2
+    version = sys.argv[1]
+    outdir = sys.argv[2] if len(sys.argv) > 2 else "dist"
+    name = f"jaes-dead-drop-{version}"
 
-echo "archives and sha256sums.txt written to $OUT/"
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(root)
+
+    if subprocess.run(["git", "rev-parse", "--verify", "--quiet", f"refs/tags/{version}"],
+                      capture_output=True).returncode != 0:
+        print(f"no such tag: {version}", file=sys.stderr)
+        return 1
+
+    commit_time = int(subprocess.check_output(
+        ["git", "log", "-1", "--format=%ct", version]).strip())
+
+    work = tempfile.mkdtemp()
+    tree = os.path.join(work, name)
+    os.makedirs(tree)
+    os.makedirs(outdir, exist_ok=True)
+    try:
+        subprocess.run(["git", "archive", "--format=tar", version], check=True,
+                       stdout=open(os.path.join(work, "export.tar"), "wb"))
+        with tarfile.open(os.path.join(work, "export.tar")) as export:
+            export.extractall(tree)
+
+        entries = []
+        for folder, dirnames, filenames in os.walk(tree):
+            dirnames.sort()
+            rel_dir = os.path.relpath(folder, work)
+            entries.append((rel_dir, True))
+            for filename in sorted(filenames):
+                entries.append((os.path.join(rel_dir, filename), False))
+        entries.sort()
+
+        tarball = os.path.join(outdir, f"{name}.tar.gz")
+        with open(os.path.join(work, "plain.tar"), "wb") as plain:
+            with tarfile.open(fileobj=plain, mode="w", format=tarfile.GNU_FORMAT) as archive:
+                for relative, is_dir in entries:
+                    info = tarfile.TarInfo(relative)
+                    full = os.path.join(work, relative)
+                    info.mtime = commit_time
+                    info.uid = info.gid = 0
+                    info.uname = info.gname = ""
+                    if is_dir:
+                        info.type = tarfile.DIRTYPE
+                        info.mode = 0o755
+                        archive.addfile(info)
+                    else:
+                        info.mode = 0o755 if os.access(full, os.X_OK) else 0o644
+                        info.size = os.path.getsize(full)
+                        with open(full, "rb") as handle:
+                            archive.addfile(info, handle)
+        with open(os.path.join(work, "plain.tar"), "rb") as plain, \
+                open(tarball, "wb") as compressed:
+            with gzip.GzipFile(fileobj=compressed, mode="wb", compresslevel=9, mtime=FIXED_TIME) as gz:
+                shutil.copyfileobj(plain, gz)
+
+        zipball = os.path.join(outdir, f"{name}.zip")
+        stamp = time.gmtime(commit_time)[:6]
+        with zipfile.ZipFile(zipball, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+            for relative, is_dir in entries:
+                if is_dir:
+                    continue
+                info = zipfile.ZipInfo(relative, date_time=stamp)
+                info.external_attr = (0o755 if os.access(os.path.join(work, relative), os.X_OK) else 0o644) << 16
+                info.compress_type = zipfile.ZIP_DEFLATED
+                with open(os.path.join(work, relative), "rb") as handle:
+                    archive.writestr(info, handle.read())
+
+        lines = []
+        for filename in (f"{name}.tar.gz", f"{name}.zip"):
+            digest = subprocess.check_output(["sha256sum", filename], cwd=outdir).decode().split()[0]
+            lines.append(f"{digest}  {filename}")
+        with open(os.path.join(outdir, "sha256sums.txt"), "w") as sums:
+            sums.write("\n".join(lines) + "\n")
+        print("\n".join(lines))
+        print(f"archives and sha256sums.txt written to {outdir}/")
+    finally:
+        shutil.rmtree(work)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
