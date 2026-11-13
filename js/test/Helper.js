@@ -347,7 +347,7 @@ describe('Helper', function () {
         it('decodes the apostrophe in a mailto subject', () => {
             assert.strictEqual(
                 JaesDeadDrop.Helper.htmlDecode('Jae&#39;s Dead Drop'),
-                "Jae's Dead Drop"
+                'Jae\'s Dead Drop'
             );
         });
     });
