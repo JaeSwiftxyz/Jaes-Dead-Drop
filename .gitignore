@@ -49,3 +49,9 @@ vendor/aws/
 
 # release artifacts
 dist/
+
+# release files, if downloaded into the repo
+/*.tar.gz
+/*.zip
+/*.intoto.jsonl
+/sha256sums.txt
