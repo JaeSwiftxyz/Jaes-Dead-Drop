@@ -55,7 +55,7 @@ key never reaches the server.
 ## Options
 
 Some features are optional and can be enabled or disabled in the [configuration
-file](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php):
+file](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php):
 
 * Password protection
 
@@ -84,17 +84,17 @@ file](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.ph
 
 ## Further resources
 
-* [FAQ](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md)
+* [FAQ](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md)
 
-* [Installation guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#installation)
+* [Installation guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#installation)
 
-* [Configuration guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php)
+* [Configuration guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php)
 
-* [Templates](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#templates)
+* [Templates](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#templates)
 
-* [Translation guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#translations)
+* [Translation guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#translations)
 
-* [Developer guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Running%20Unit%20Tests.md)
+* [Developer guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Running%20Unit%20Tests.md)
 
 Run into any issues? Have ideas for further developments? Please
-[report](https://github.com/JaeSwiftxyz/jaes-dead-drop/issues) them!
+[report](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues) them!

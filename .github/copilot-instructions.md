@@ -104,7 +104,7 @@
   - **Encryption:** Only client-side in JS using the browsers WebCrypto API.
   - **Backend:** Serves encrypted blobs (as base64 encoded strings) and plaintext meta data in JSON format. APIs are designed for WORM (write once, read many) usage. Once stored content is never updated, only deleted, if delete token is sent, has expired as per meta data or immediately upon reading for the first time, if meta data was set to burn-after-reading.
   - **Legacy Support:** `js/legacy.js` must remain compatible with IE4 and Netscape for feature detection of ancient browsers.
-  - **Configuration:** See `cfg/conf.sample.php` and the [wiki](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php) for available options. All option defaults are defined in `lib/Configuration.php`
+  - **Configuration:** See `cfg/conf.sample.php` and the [wiki](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php) for available options. All option defaults are defined in `lib/Configuration.php`
 
 ## Automated Checks
 

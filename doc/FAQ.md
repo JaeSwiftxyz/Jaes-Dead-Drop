@@ -19,7 +19,7 @@ then:
 ```bash
 sha256sum --check --ignore-missing sha256sums.txt
 slsa-verifier verify-artifact --provenance-path jaes-dead-drop-<version>.intoto.jsonl \
-  --source-uri github.com/JaeSwiftxyz/jaes-dead-drop jaes-dead-drop-<version>.tar.gz
+  --source-uri github.com/JaeSwiftxyz/Jaes-Dead-Drop jaes-dead-drop-<version>.tar.gz
 ```
 
 Do not use GitHub's "Source code (…)" links for this: those archives are

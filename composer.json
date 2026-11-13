@@ -16,13 +16,13 @@
 		"encrypted",
 		"AES"
 	],
-	"homepage": "https://github.com/JaeSwiftxyz/jaes-dead-drop",
+	"homepage": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop",
 	"license": "zlib-acknowledgement",
 	"support": {
-		"issues": "https://github.com/JaeSwiftxyz/jaes-dead-drop/issues",
-		"wiki": "https://github.com/JaeSwiftxyz/jaes-dead-drop/wiki",
-		"source": "https://github.com/JaeSwiftxyz/jaes-dead-drop",
-		"docs": "https://github.com/JaeSwiftxyz/jaes-dead-drop/tree/main/doc"
+		"issues": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues",
+		"wiki": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/wiki",
+		"source": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop",
+		"docs": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/tree/main/doc"
 	},
 	"require": {
 		"php": "^7.4 || ^8.0",

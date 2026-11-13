@@ -11,7 +11,7 @@ assignees: ''
 Otherwise, for help and support issues e.g. for deployment issues, please go back and chose the appropiate category. -->
 
 **Did you use the FAQ section?**
-- [ ] Yes, I have read [the FAQ](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md) and I found no solution/answer there.
+- [ ] Yes, I have read [the FAQ](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md) and I found no solution/answer there.
 
 <!-- Describe the bug: A clear and concise description of what the bug is. -->
 

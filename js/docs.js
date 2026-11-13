@@ -4,7 +4,7 @@
  *
  * Footer docs tabs: opens one bundled document inline, one at a time.
  *
- * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @link      https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  * @copyright 2026 JaeSwift (jaeswift.xyz)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  */

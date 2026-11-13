@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JaeSwiftxyz/jaes-dead-drop.git"
+    "url": "git+https://github.com/JaeSwiftxyz/Jaes-Dead-Drop.git"
   },
   "keywords": [
     "private",
@@ -45,7 +45,7 @@
   "author": "",
   "license": "zlib-acknowledgement",
   "bugs": {
-    "url": "https://github.com/JaeSwiftxyz/jaes-dead-drop/issues"
+    "url": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues"
   },
-  "homepage": "https://github.com/JaeSwiftxyz/jaes-dead-drop"
+  "homepage": "https://github.com/JaeSwiftxyz/Jaes-Dead-Drop"
 }

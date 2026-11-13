@@ -9,7 +9,7 @@
 
 ## Reporting a Vulnerability
 
-We suggest to [use the corresponding GitHub form](https://github.com/JaeSwiftxyz/jaes-dead-drop/security/advisories/new)
+We suggest to [use the corresponding GitHub form](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/security/advisories/new)
 to report a new vulnerability directly on GitHub. [It can be handled there](https://docs.github.com/code-security/how-tos/report-and-fix-vulnerabilities/report-privately)
 and all necessary steps like verifying the vulnerability, crediting the finder
 and drafting a security advisory will be done there.

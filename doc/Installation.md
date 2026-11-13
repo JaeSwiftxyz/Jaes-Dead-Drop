@@ -3,14 +3,14 @@
 ## TL;DR
 
 Download the
-[latest release archive](https://github.com/JaeSwiftxyz/jaes-dead-drop/releases/latest)
+[latest release archive](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/releases/latest)
 (with the link labelled as "Source code (…)") and extract it in your web hosts
 folder where you want to install your Jae's Dead Drop instance. We try to provide a
 mostly safe default configuration, but we urge you to check the
 [security section](#hardening-and-security) below and the
 [configuration options](#configuration) to adjust as you see fit.
 
-**NOTE:** See our [FAQ entry on securely downloading release files](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#download)
+**NOTE:** See our [FAQ entry on securely downloading release files](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#download)
 for more information.
 
 ### Container deployment
@@ -110,7 +110,7 @@ wherever it may be.
 When setting up Jae's Dead Drop, also set up HTTPS, if you haven't already. Without
 HTTPS Jae's Dead Drop is not secure, as the JavaScript or WebAssembly files could be
 manipulated during transmission. For more information on this, see our
-[FAQ entry on HTTPS setup recommendations](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#https).
+[FAQ entry on HTTPS setup recommendations](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#https).
 
 ### File-level permissions
 
@@ -118,7 +118,7 @@ After completing the installation, you should make sure, that other users on the
 system cannot read the config file or the `data/` directory, as – depending on
 your configuration – potentially sensitive information may be stored in there.
 
-See our [FAQ entry on permissions](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#permissions)
+See our [FAQ entry on permissions](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#permissions)
 for a detailed guide on how to "harden" access to files and folders.
 
 ## Configuration
@@ -135,7 +135,7 @@ you set a time limit in seconds. Users may not post more often than this limit
 to your Jae's Dead Drop installation.
 
 More details can be found in the
-[configuration documentation](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php).
+[configuration documentation](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php).
 
 ## Advanced installation
 
@@ -209,7 +209,7 @@ In a container setup apply the same idea in the image's web-server config.
 If you want to use Jae's Dead Drop behind Cloudflare, make sure you have disabled the
 Rocket loader and unchecked "Javascript" for Auto Minify, found in your domain
 settings, under "Speed". More information can be found in our
-[FAQ entry on Cloudflare related issues](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#cloudflare).
+[FAQ entry on Cloudflare related issues](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#cloudflare).
 
 ### Using a Database Instead of Flat Files
 

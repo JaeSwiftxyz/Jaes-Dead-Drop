@@ -5,7 +5,7 @@
  * Renders the bundled Markdown documentation to HTML for the footer docs panel.
  * Deliberately small: only the constructs the docs use, everything escaped first.
  *
- * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @link      https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  * @copyright 2026 JaeSwift (jaeswift.xyz)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  */

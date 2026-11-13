@@ -4,7 +4,7 @@
  *
  * a zero-knowledge paste bin
  *
- * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @link      https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  * @copyright 2022 Felix J. Ogris (https://ogris.de/)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  *
@@ -13,7 +13,7 @@
  *
  * Installation:
  *   1. Make sure you have composer.lock and composer.json in the document root of your PasteBin
- *   2. If not, grab a copy from https://github.com/JaeSwiftxyz/jaes-dead-drop
+ *   2. If not, grab a copy from https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  *   3. As non-root user, install the AWS SDK for PHP:
  *      composer require aws/aws-sdk-php
  *      (On FreeBSD, install devel/php-composer2 prior, e.g.: make -C /usr/ports/devel/php-composer2 install clean)

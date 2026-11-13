@@ -4,7 +4,7 @@
  *
  * a zero-knowledge paste bin
  *
- * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @link      https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  * @copyright 2026 JaeSwift (jaeswift.xyz)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  */
@@ -426,7 +426,7 @@ class Controller
         header('Cross-Origin-Embedder-Policy: require-corp');
         // disabled, because it prevents links from a document to the same site to
         // be opened. Didn't work with `same-origin-allow-popups` either.
-        // See issue https://github.com/JaeSwiftxyz/jaes-dead-drop/issues/970 for details.
+        // See issue https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues/970 for details.
         // header('Cross-Origin-Opener-Policy: same-origin');
         header('Permissions-Policy: browsing-topics=()');
         header('Referrer-Policy: no-referrer');

@@ -27,7 +27,7 @@ an edited workflow can swap them afterwards.
 ```bash
 sha256sum --check --ignore-missing sha256sums.txt
 slsa-verifier verify-artifact --provenance-path jaes-dead-drop-<version>.intoto.jsonl \
-  --source-uri github.com/JaeSwiftxyz/jaes-dead-drop jaes-dead-drop-<version>.tar.gz
+  --source-uri github.com/JaeSwiftxyz/Jaes-Dead-Drop jaes-dead-drop-<version>.tar.gz
 git tag --verify <version>
 ```
 
@@ -44,7 +44,7 @@ so verification needs nothing from GitHub:
 
 ```bash
 mkdir -p ~/.config/git
-grep -A2 '^```$' https://raw.githubusercontent.com/JaeSwiftxyz/jaes-dead-drop/main/doc/release-signing-key.md \
+grep -A2 '^```$' https://raw.githubusercontent.com/JaeSwiftxyz/Jaes-Dead-Drop/main/doc/release-signing-key.md \
   | grep '^ssh-' | sed 's|^|jae@jaeswift.xyz |' >> ~/.config/git/allowed_signers
 git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
 ```

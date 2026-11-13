@@ -4,7 +4,7 @@
  *
  * a zero-knowledge paste bin
  *
- * @link      https://github.com/JaeSwiftxyz/jaes-dead-drop
+ * @link      https://github.com/JaeSwiftxyz/Jaes-Dead-Drop
  * @copyright 2026 JaeSwift (jaeswift.xyz)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  */
@@ -119,11 +119,11 @@ class Configuration
             'js/base-x-5.0.1.js'     => 'sha512-FmhlnjIxQyxkkxQmzf0l6IRGsGbgyCdgqPxypFsEtHMF1naRqaLLo6mcyN5rEaT16nKx1PeJ4g7+07D6gnk/Tg==',
             'js/bootstrap-5.3.8.js'  => 'sha512-BkZvJ5rZ3zbDCod5seWHpRGg+PRd6ZgE8Nua/OMtcxqm8Wtg0PqwhUUXK5bqvl3oclMt5O+3zjRVX0L+L2j7fA==',
             'js/dark-mode-switch.js' => 'sha512-WGroOura0Ye0gN/63ph9iNZc7DqHZF7Crakq5IxsijpWDVM7kCRH5uOJEoEjVAQ4cH+pGwq8vMfdVHiy+6IZVQ==',
-            'js/docs.js'             => 'sha512-1dwQmTp4ybQA+wQJue8u7xAqM/iqhgAEL2p5etAWstxFQAhTV24ysUjakX/0WYY1df9KMb9dy98Cra8VHbMxIw==',
+            'js/docs.js'             => 'sha512-GK5BqQ+6Geoig/i5mS2PiharUifEuRNbvIQAhlhXGuLj//2hT7R00SkHe05MeOlmo2K1Y2inw9CebvI2OJoAnQ==',
             'js/kjua-0.10.0.js'      => 'sha512-BYj4xggowR7QD150VLSTRlzH62YPfhpIM+b/1EUEr7RQpdWAGKulxWnOvjFx1FUlba4m6ihpNYuQab51H6XlYg==',
-            'js/legacy.js'           => 'sha512-6XnGAnIdt7cAqNBt6UIDOfbjgrn6Uhw6KSGiRKwped/5RM9mR44co81BWr2JPXNK9ttqSh9/V0LrwfaaJ3o6Vw==',
+            'js/legacy.js'           => 'sha512-9w8fx8M09Qa1qZ8IuTuxVeMyiE/VoanKa8+Q+BFRh6xt7EZZLk1WIfr4pmAbzf76avWwiDETf6IgFITUPu+4fQ==',
             'js/prettify.js'         => 'sha512-puO0Ogy++IoA2Pb9IjSxV1n4+kQkKXYAEUtVzfZpQepyDPyXk8hokiYDS7ybMogYlyyEIwMLpZqVhCkARQWLMg==',
-            'js/jaes-dead-drop.js'   => 'sha512-A6w2D8MFBardsfeo0hb4DOEop4S3ZXP5Dbz1g8YBFa0loBB72OzvA043h3mBG2/+Tfk0On0+WSZvA+YTSr9rmw==',
+            'js/jaes-dead-drop.js'   => 'sha512-3avlaordCekNYB0CswdSZ3N/+O0U7JUpxoaGkoKxvujMkHL2eoRkI3u7W3ofEaKYO+aCSveuzedpXhGeiPfg+Q==',
             'js/purify-3.4.17.js'    => 'sha512-udF2zPdEyVCAxIGeBbeSGFK1Fj5c4eHGi6NqOSsr8M75lGs39POzgUNxO3SFxOg4cHfAoZJgR2EaXdmDi6v6AQ==',
             'js/showdown-2.1.0.js'   => 'sha512-WYXZgkTR0u/Y9SVIA4nTTOih0kXMEd8RRV6MLFdL6YU8ymhR528NLlYQt1nlJQbYz4EW+ZsS0fx1awhiQJme1Q==',
             'js/zlib-1.3.2.js'       => 'sha512-RAhJgxg9siMIA8ky4c10Rc2zUgnK80olHB8Tt1IOYWY4Eh1WmrviQkDn+sgBlb38ZHq3tzufGC41kP360gmosQ==',

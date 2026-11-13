@@ -260,7 +260,7 @@ agree to indemnify, defend, and hold each Contributor harmless for any liability
 incurred by, or claims asserted against, such Contributor by reason of your
 accepting any such warranty or additional liability.
 
-## [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/) for [Jae's Dead Drop favicons, icons & logos](https://github.com/JaeSwiftxyz/jaes-dead-drop) by [rugk](https://github.com/rugk)
+## [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/) for [Jae's Dead Drop favicons, icons & logos](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop) by [rugk](https://github.com/rugk)
 
 By exercising the Licensed Rights (defined below), You accept and agree to be
 bound by the terms and conditions of this Creative Commons Attribution 4.0

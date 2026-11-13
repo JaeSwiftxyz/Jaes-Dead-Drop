@@ -1,6 +1,6 @@
 # Jae's Dead Drop Documentation
 
-## [Frequently Asked Questions](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md)
+## [Frequently Asked Questions](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md)
 
 Please have a look at these questions *before* opening an issue in this repo.
 
@@ -9,20 +9,20 @@ Please have a look at these questions *before* opening an issue in this repo.
 Minimal requirements, hardening and securing your installation and initial
 configuration.
 
-## [Configuration guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php)
+## [Configuration guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php)
 
 Detailed guide on each configuration option and their effects.
 
-## [Templates](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#templates)
+## [Templates](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#templates)
 
 How to change an existing template or create your own, as well as an overview of
 the currently included templates.
 
-## [Translation guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#translations)
+## [Translation guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#translations)
 
 How to help translate Jae's Dead Drop and technical background on it's implementation.
 
-## [Developer guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Running%20Unit%20Tests.md)
+## [Developer guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Running%20Unit%20Tests.md)
 
 Know how for participating in Jae's Dead Drops development.
 

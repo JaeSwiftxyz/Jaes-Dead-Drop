@@ -2,10 +2,10 @@
 
 At first, awesome you take the time to make Jae's Dead Drop better! :tada: :+1:
 
-Have a look at our [contributing guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Running%20Unit%20Tests.md) if you want to hack on the code.
-If you want to translate Jae's Dead Drop into your language have a look at the [translation guide](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/Installation.md#translations).
+Have a look at our [contributing guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Running%20Unit%20Tests.md) if you want to hack on the code.
+If you want to translate Jae's Dead Drop into your language have a look at the [translation guide](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/Installation.md#translations).
 
-Except this also opening [issues](https://github.com/JaeSwiftxyz/jaes-dead-drop/issues) helps much. Just describe your problem detailed enough and fill out our template.
+Except this also opening [issues](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues) helps much. Just describe your problem detailed enough and fill out our template.
 
 ## Guidelines for pull requests
 

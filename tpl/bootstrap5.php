@@ -437,7 +437,7 @@ endif;
 					<a href="https://www.mozilla.org/firefox/">Firefox</a>,
 					<a href="https://www.opera.com/">Opera</a>,
 					<a href="https://www.google.com/chrome">Chrome</a>…<br />
-					<span class="small"><?php echo I18n::_('For more information <a href="%s">see this FAQ entry</a>.', 'https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#modern-browser'); ?></span>
+					<span class="small"><?php echo I18n::_('For more information <a href="%s">see this FAQ entry</a>.', 'https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#modern-browser'); ?></span>
 				</div>
 <?php
 if ($HTTPWARNING) :
@@ -445,7 +445,7 @@ if ($HTTPWARNING) :
 				<div id="httpnotice" role="alert" class="hidden alert alert-danger">
 					<svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="img/bootstrap-icons.svg#exclamation-triangle" /></svg>
 					<?php echo I18n::_('This website is using an insecure connection! Please only use it for testing.'); ?><br />
-					<span class="small"><?php echo I18n::_('For more information <a href="%s">see this FAQ entry</a>.', 'https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#https'); ?></span>
+					<span class="small"><?php echo I18n::_('For more information <a href="%s">see this FAQ entry</a>.', 'https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#https'); ?></span>
 				</div>
 				<div id="insecurecontextnotice" role="alert" class="hidden alert alert-danger">
 					<svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="img/bootstrap-icons.svg#exclamation-triangle" /></svg>
@@ -540,7 +540,7 @@ endif;
 				<div id="noscript" role="alert" class="alert alert-info noscript-hide">
 					<svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="img/bootstrap-icons.svg#exclamation-circle" /></svg>
 					<?php echo I18n::_('Loading…'); ?><br />
-					<span class="small"><?php echo I18n::_('In case this message never disappears please have a look at <a href="%s">this FAQ for information to troubleshoot</a>.', 'https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#stuck-loading'); ?></span>
+					<span class="small"><?php echo I18n::_('In case this message never disappears please have a look at <a href="%s">this FAQ for information to troubleshoot</a>.', 'https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#stuck-loading'); ?></span>
 				</div>
 			</section>
 		</main>

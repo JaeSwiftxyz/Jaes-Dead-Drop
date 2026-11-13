@@ -1,7 +1,7 @@
 ;<?php http_response_code(403); /*
 ; config file for Jae's Dead Drop
 ;
-; An explanation of each setting can be find online at https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/cfg/conf.sample.php.
+; An explanation of each setting can be find online at https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/cfg/conf.sample.php.
 
 [main]
 ; (optional) set a project name to be displayed on the website
@@ -114,7 +114,7 @@ languageselection = false
 ; Notes:
 ; - By default this disallows to load images from third-party servers, e.g. when
 ;   they are embedded in documents. If you wish to allow that, you can adjust the
-;   policy here. See https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#why-does-not-it-load-embedded-images
+;   policy here. See https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#why-does-not-it-load-embedded-images
 ;   for details.
 ; - The 'wasm-unsafe-eval' is used to enable webassembly support (used for zlib
 ;   compression). You can remove it if compression doesn't need to be supported.
@@ -132,7 +132,7 @@ languageselection = false
 ; connection (insecure HTTP instead of HTTPS), defaults to true.
 ; Secure transport methods like Tor and I2P domains are automatically whitelisted.
 ; It is **strongly discouraged** to disable this.
-; See https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#https for more information.
+; See https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#https for more information.
 ; httpwarning = true
 
 ; Pick compression algorithm or disable it. Only applies to documents & comments
@@ -317,5 +317,5 @@ dir = PATH "data"
 ;[sri]
 ; Subresource integrity (SRI) hashes used in template files. Uncomment and set
 ; these for all js files used. See:
-; https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md#sri
+; https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md#sri
 ;js/jaes-dead-drop.js = "sha512-[…]"

@@ -3,7 +3,7 @@
  *
  * a zero-knowledge paste bin
  *
- * @see       {@link https://github.com/JaeSwiftxyz/jaes-dead-drop}
+ * @see       {@link https://github.com/JaeSwiftxyz/Jaes-Dead-Drop}
  * @copyright 2026 JaeSwift ({@link https://jaeswift.xyz})
  * @license   {@link https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License}
  * @name      Legacy

@@ -257,7 +257,7 @@ class I18nTest extends TestCase
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'fr';
         I18n::loadTranslations();
         // For example, the French translation should not have the apostrophe encoded
-        // See https://github.com/JaeSwiftxyz/jaes-dead-drop/issues/1712
+        // See https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/issues/1712
         $message = I18n::_('Document does not exist, has expired or has been deleted.');
         $this->assertFalse(str_contains($message, '&apos;'), 'French apostrophe should not be encoded in translation message');
         $this->assertTrue(str_contains($message, "n'existe"), 'French apostrophe should be present as literal character');

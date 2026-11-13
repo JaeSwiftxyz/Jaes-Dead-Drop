@@ -15,9 +15,9 @@ body:
     id: readed-faq
     attributes:
       label: Did you use the FAQ section?
-      description: Have you read [the FAQ](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md)?
+      description: Have you read [the FAQ](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md)?
       options:
-        - label: Yes, I have read [the FAQ](https://github.com/JaeSwiftxyz/jaes-dead-drop/blob/main/doc/FAQ.md) and I found no solution/answer there.
+        - label: Yes, I have read [the FAQ](https://github.com/JaeSwiftxyz/Jaes-Dead-Drop/blob/main/doc/FAQ.md) and I found no solution/answer there.
           required: true
   - type: textarea
     id: what_you_did
