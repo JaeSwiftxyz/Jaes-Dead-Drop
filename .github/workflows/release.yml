@@ -74,6 +74,6 @@ jobs:
     with:
       base64-subjects: "${{ needs.release.outputs.hashes }}"
       provenance-name: jaes-dead-drop-${{ github.ref_name }}.intoto.jsonl
-      private-repository: true
+      private-repository: ${{ github.event.repository.private }}
       draft-release: true
       upload-assets: true
